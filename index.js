@@ -56,7 +56,9 @@ async function run() {
 
             const package = await packageCollection.findOne(query);
             res.json(package);
-        })
+        });
+
+
         // POST API - BOOK PACKAGE
         app.post('/packages', async (req, res) => {
             const bookedPackage = req.body;
@@ -65,9 +67,17 @@ async function run() {
             const result = await bookedPackageCollection.insertOne(bookedPackage);
             console.log(result);
             res.json(result);
-        })
+        });
 
-        // POST API - ADD PACKAGE
+        // POST API - Add a new PACKAGE
+        app.post('/packages', async (req, res) => {
+            const newPack = req.body;
+            console.log('Hit the post api', newPack);
+
+            const result = await packageCollection.insertOne(newPack);
+            console.log(result);
+            res.json(result);
+        })
 
         // UPDATE API - 
 
