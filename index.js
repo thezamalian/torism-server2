@@ -60,7 +60,7 @@ async function run() {
 
 
         // POST API - BOOK PACKAGE
-        app.post('/packages', async (req, res) => {
+        app.post('/manage-packages', async (req, res) => {
             const bookedPackage = req.body;
             console.log('Hit the post api', bookedPackage);
 
