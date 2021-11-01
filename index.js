@@ -79,7 +79,24 @@ async function run() {
             res.json(result);
         })
 
-        // UPDATE API - 
+        // UPDATE API - update status
+        app.put('/manage-packages/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedPack = req.body;
+
+            const filter = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    isPending: updatedPack.isPending
+                }
+            };
+            const result = await bookedPackageCollection.updateOne(filter, updateDoc, options);
+
+            // console.log('Updating user', id);
+            // console.log('Request: ', updatedPack);
+            res.json(result)
+        })
 
         // DELETE API - DELETE A PACKAGE 
         app.delete('/packages/:id', async (req, res) => {
